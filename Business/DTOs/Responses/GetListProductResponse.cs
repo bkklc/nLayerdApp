@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.DTOs.Models;
+using Core.Persistence.Paging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Business.DTOs.Responses
 {
-    public class GetListProductResponse
+    public class GetListProductResponse : BasePageableModel
     {
-        public string ProductName { get; set; }
-        public decimal UnitPrice { get; set; }
-        public short UnitsInStock { get; set; }
+        public IList<ProductListDto> Items { get; set; }
     }
+
+
+    
 }

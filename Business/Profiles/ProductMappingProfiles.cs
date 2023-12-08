@@ -8,16 +8,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Entities.Concretes;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Core.Persistence.Paging;
 
 namespace Business.DTOs.Profiles
 {
     public class ProductMappingProfiles : Profile
     {
         public ProductMappingProfiles()
-        {
+        {            
             CreateMap<CreateProductRequest, Product>();
             CreateMap<Product, CreatedProductResponse>();
-            CreateMap<Product, GetListProductResponse>();
+            //GetListResponse İçin
+            CreateMap<IPaginate<Product>, GetListResponse>();
+            CreateMap<Product, ProductListDto>();
+
+
         }
     }
 }

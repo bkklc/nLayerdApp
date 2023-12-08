@@ -26,10 +26,11 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetListProductResponse")] public async Task<IActionResult> GetList( ) 
+        [HttpGet("GetListProductResponse")] 
+        public async Task<IActionResult> GetList( ) 
 
         {
-            var result =  _productService.GetAll();
+            var result =  await _productService.GetListAsync();
             return Ok(result); 
         }
     }

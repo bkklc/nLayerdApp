@@ -36,46 +36,56 @@ namespace Business.Concretes
             CreatedProductResponse createdProductResponse = _mapper.Map<CreatedProductResponse>(createdProduct);
             return createdProductResponse;
 
+                    
 
-            //Product product = new Product();
-            //product.Id = Guid.NewGuid();
-            //product.ProductName = createProductRequest.ProductName;
-            //product.UnitPrice = createProductRequest.UnitPrice;
-            //product.QuantityPerUnit = createProductRequest.QuantityPerUnit;
-            //product.UnitsInStock = createProductRequest.UnitsInStock;
 
-            //Product createdProduct = await _productDal.AddAsync(product);
+        //Product product = new Product();
+        //product.Id = Guid.NewGuid();
+        //product.ProductName = createProductRequest.ProductName;
+        //product.UnitPrice = createProductRequest.UnitPrice;
+        //product.QuantityPerUnit = createProductRequest.QuantityPerUnit;
+        //product.UnitsInStock = createProductRequest.UnitsInStock;
 
-            //CreatedProductResponse createdProductResponse = new CreatedProductResponse();
-            //createdProductResponse.Id = createdProduct.Id;
-            //createdProductResponse.ProductName = createdProduct.ProductName;
-            //createdProductResponse.UnitPrice = createdProduct.UnitPrice;
-            //createdProductResponse.QuantityPerUnit = createdProduct.QuantityPerUnit;
-            //createdProductResponse.UnitsInStock = createdProduct.UnitsInStock;
-            //return createdProductResponse;
+        //Product createdProduct = await _productDal.AddAsync(product);
 
-        }
+        //CreatedProductResponse createdProductResponse = new CreatedProductResponse();
+        //createdProductResponse.Id = createdProduct.Id;
+        //createdProductResponse.ProductName = createdProduct.ProductName;
+        //createdProductResponse.UnitPrice = createdProduct.UnitPrice;
+        //createdProductResponse.QuantityPerUnit = createdProduct.QuantityPerUnit;
+        //createdProductResponse.UnitsInStock = createdProduct.UnitsInStock;
+        //return createdProductResponse;
 
-        public List<GetListProductResponse> GetAll()
+    }
+
+        public async Task<GetListProductResponse> GetListAsync()
         {
-
-            //business rules
-            IPaginate<Product> products = _productDal.GetList();
-
-            List<GetListProductResponse> responses = _mapper.Map<List<GetListProductResponse>>(products.Items);
-            //List<GetListProductResponse> responses = new List<GetListProductResponse>();
-
-            //foreach (Product product in products.Items)
-            //{
-            //    GetListProductResponse getProductResponse = new GetListProductResponse();
-            //    getProductResponse.ProductName = product.ProductName;
-            //    getProductResponse.UnitPrice = product.UnitPrice;
-            //    getProductResponse.UnitsInStock = product.UnitsInStock;
-
-            //    responses.Add(getProductResponse);
-            //}
-
-            return responses;
+            IPaginate<Product> products = await _productDal.GetListAsync();
+            GetListProductResponse mapped = _mapper.Map<GetListProductResponse>(products);
+            return mapped;
         }
+
+
+
+        //public List<GetListResponse> GetAll()
+        //{
+        //    //business rules
+        //    IPaginate<Product> products = _productDal.GetList();
+
+        //    List<GetListResponse> responses = _mapper.Map<List<GetListResponse>>(products.Items);
+
+        //    //List<GetListProductResponse> responses = new List<GetListProductResponse>();
+
+        //    //foreach (Product product in products.Items)
+        //    //{
+        //    //    GetListProductResponse getProductResponse = new GetListProductResponse();
+        //    //    getProductResponse.ProductName = product.ProductName;
+        //    //    getProductResponse.UnitPrice = product.UnitPrice;
+        //    //    getProductResponse.UnitsInStock = product.UnitsInStock;
+        //    //    responses.Add(getProductResponse);
+        //    //}
+
+        //    return responses;
+        //}
     }
 }
