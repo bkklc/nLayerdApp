@@ -21,9 +21,12 @@ namespace Business.Rules
             _productDal = productDal;
         }
 
-        public async Task MaximumProduct(int CategoryId)
+        public async Task EachCategoryCanContainMax20Product(int CategoryId)
         {
-            var result = await _productDal.GetListAsync(i => i.CategoryId == CategoryId);
+            var result = await _productDal.GetListAsync(
+                predicate : p => p.CategoryId == CategoryId,
+                size : 25
+                );
 
             if (result.Count >= 20)
             {

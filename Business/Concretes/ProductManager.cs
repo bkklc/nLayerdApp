@@ -33,7 +33,7 @@ namespace Business.Concretes
 
         public async Task<CreatedProductResponse> Add(CreateProductRequest createProductRequest)
         {
-            await _businessRules.MaximumProduct(createProductRequest.CategoryId);
+            await _businessRules.EachCategoryCanContainMax20Product(createProductRequest.CategoryId);
 
             Product product =  _mapper.Map<Product>(createProductRequest) ;
             Product createdProduct = await _productDal.AddAsync(product);

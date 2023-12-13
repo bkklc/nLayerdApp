@@ -25,7 +25,7 @@ namespace Business.Rules
         {
             var result = await _categoryDal.GetListAsync();
 
-            if (result.Count >=10)
+            if (result.Count >=15)
             {
                 throw new BusinessException(BusinessMessages.CategoryLimit);
             }
