@@ -2,9 +2,11 @@
 using Business.Abstracts;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Core.DataAccess.Paging;
 using Core.Persistence.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,11 +60,25 @@ namespace Business.Concretes
 
     }
 
-        public async Task<GetListProductResponse> GetListAsync()
+        public async Task<IPaginate<GetListProductResponse>> GetListAsync(PageRequest pageRequest)
         {
-            IPaginate<Product> products = await _productDal.GetListAsync();
-            GetListProductResponse mapped = _mapper.Map<GetListProductResponse>(products);
-            return mapped;
+            //IPaginate<Product> products = await _productDal.GetListAsync();
+            //GetListProductResponse mapped = _mapper.Map<GetListProductResponse>(products);
+            //return mapped;
+
+            var data = await _productDal.GetListAsync(
+                include: p => p.Include(p => p.Category),
+                index: pageRequest.PageIndex,
+                size: pageRequest.PageSıze
+                
+                );
+
+            var result = _mapper.Map<Paginate<GetListProductResponse>>(data); 
+            return result;
+
+
+
+
         }
 
 
