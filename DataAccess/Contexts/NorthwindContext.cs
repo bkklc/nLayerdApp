@@ -16,6 +16,7 @@ namespace DataAccess.Contexts
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public NorthwindContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions) 
         { 

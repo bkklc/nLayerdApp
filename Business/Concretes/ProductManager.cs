@@ -71,7 +71,7 @@ namespace Business.Concretes
             var data = await _productDal.GetListAsync(
                 include: p => p.Include(p => p.Category),
                 index: pageRequest.PageIndex,
-                size: pageRequest.PageSıze
+                size: pageRequest.PageSize
                 
                 );
 

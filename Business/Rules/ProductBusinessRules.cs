@@ -24,8 +24,8 @@ namespace Business.Rules
         public async Task EachCategoryCanContainMax20Product(int CategoryId)
         {
             var result = await _productDal.GetListAsync(
-                predicate : p => p.CategoryId == CategoryId,
-                size : 25
+                predicate : p => p.CategoryId == CategoryId
+                //size : 25
                 );
 
             if (result.Count >= 20)
