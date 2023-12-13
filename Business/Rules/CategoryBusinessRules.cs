@@ -27,7 +27,7 @@ namespace Business.Rules
 
             if (result.Count >=10)
             {
-                throw new BusinessException(BusinessMessages.Categorylimit);
+                throw new BusinessException(BusinessMessages.CategoryLimit);
             }
         }
     }

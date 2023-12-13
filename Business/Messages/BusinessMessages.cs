@@ -8,6 +8,7 @@ namespace Business.Messages
 {
     public class BusinessMessages
     {
-        public static string Categorylimit = "Kategori sayısı max 10 olabilir";
+        public static string CategoryLimit = "Kategori sayısı max 10 olabilir";
+        public static string ProductLimit = "Ürün sayısı max 20 olabilir";
     }
 }

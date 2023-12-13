@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
+using Business.Rules;
 using Core.DataAccess.Paging;
 using Core.Persistence.Paging;
 using DataAccess.Abstracts;
@@ -19,20 +20,21 @@ namespace Business.Concretes
     {
         IProductDal _productDal;
         IMapper _mapper;
+        ProductBusinessRules _businessRules;
 
-        public ProductManager(IProductDal productDal, IMapper mapper)
+        public ProductManager(IProductDal productDal, IMapper mapper, ProductBusinessRules businessRules)
         {
             _productDal = productDal;
             _mapper = mapper;
+            _businessRules = businessRules;
         }
 
-        public async Task Add(Product product)
-        {
-            await _productDal.AddAsync(product);
-        }
+        
 
         public async Task<CreatedProductResponse> Add(CreateProductRequest createProductRequest)
         {
+            await _businessRules.MaximumProduct(createProductRequest.CategoryId);
+
             Product product =  _mapper.Map<Product>(createProductRequest) ;
             Product createdProduct = await _productDal.AddAsync(product);
             CreatedProductResponse createdProductResponse = _mapper.Map<CreatedProductResponse>(createdProduct);
