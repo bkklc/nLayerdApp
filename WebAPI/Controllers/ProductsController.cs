@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetListProductResponse")] 
+        [HttpGet("GetAll")] 
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest ) 
 
         {

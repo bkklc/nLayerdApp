@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody] CreateCategoryRequest createCategoryRequest)
         {
             var result = await _categoryService.Add(createCategoryRequest);
