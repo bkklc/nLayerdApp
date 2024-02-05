@@ -1,4 +1,5 @@
-﻿using Business.DTOs.Requests;
+﻿using Business.Dtos.Responses;
+using Business.DTOs.Requests;
 using Business.DTOs.Responses;
 using Core.DataAccess.Paging;
 using Core.Persistence.Paging;
@@ -13,5 +14,7 @@ namespace Business.Abstracts
     public interface ICategoryService
     {
         Task<CreatedCategoryResponse> Add(CreateCategoryRequest createCategoryRequest);
+        Task<IPaginate<GetListCategoryResponse>> GetAll(PageRequest pageRequest);
+
     }
 }

@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
+using Business.Dtos.Responses;
 using Business.DTOs.Requests;
 using Business.DTOs.Responses;
 using Business.Rules;
+using Core.DataAccess.Paging;
+using Core.Persistence.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -34,6 +38,16 @@ namespace Business.Concretes
             var createdCategory = await _categoryDal.AddAsync(category);
 
             CreatedCategoryResponse result = _mapper.Map<CreatedCategoryResponse>(createdCategory);
+            return result;
+        }
+
+        public async Task<IPaginate<GetListCategoryResponse>> GetAll(PageRequest pageRequest)
+        {
+            var data = await _categoryDal.GetListAsync(
+                index: pageRequest.PageIndex,
+                size: pageRequest.PageSize
+                );
+            var result = _mapper.Map<Paginate<GetListCategoryResponse>>(data);
             return result;
         }
     }
